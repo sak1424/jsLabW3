@@ -164,7 +164,7 @@ function playBattleLog(log, onFinished) {
      onHit(attacker.name, defender.name, damage, defender.hp, isCrit)
    ================================================================= */
 function attack(attacker, defender, onHit) {
-
+    const baseDamage 
 }
 
 

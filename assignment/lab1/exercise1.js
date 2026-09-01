@@ -28,3 +28,42 @@
    ================================================================ */
 
 // Write your code below.
+
+function add(a, b) {
+  return a +b;
+}
+
+function subtract(a, b) {
+  return a-b;
+}
+
+const multiply = (a,b) => a*b;
+
+const double = n => n*2;
+
+const divide = (a,b) => {
+  return a/b;
+}
+
+function greet (name = "Guest"){
+  return "Hello, " + name + "!"
+}
+
+function announce(name, callback) {
+  return "Hello, " + name + " | " + callback();
+}
+
+function sayBye() {
+  return "Goodbye!";
+}
+
+
+
+console.log("resultAdd: ", add(3,4));
+console.log("resultSubtract: ", subtract(10,4));
+console.log("resultMultiply: ", multiply(3,5));
+console.log("resultDouble: ", double(6));
+console.log("resultDivide: ", divide(10,2));
+console.log("greetDefault: ", greet());
+console.log("greetNara: ", greet("Nara"));
+console.log("announcement: ", announce("Alice", sayBye));
