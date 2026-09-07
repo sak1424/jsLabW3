@@ -164,9 +164,15 @@ function playBattleLog(log, onFinished) {
      onHit(attacker.name, defender.name, damage, defender.hp, isCrit)
    ================================================================= */
 function attack(attacker, defender, onHit) {
-    const baseDamage 
-}
-
+    const baseDamage= attacker.attack + Math.floor(Math.random() * 5) - 2;
+    const isCrit = Math.random() < 0.25;
+    let damage = isCrit ? baseDamage * 2 : baseDamage;
+    defender.hp -= damage;
+    if (defender.hp <0){
+        defender.hp=0;
+    }
+    onHit(attacker.name, defender.name, damage, defender.hp, isCrit);
+};
 
 /* =================================================================
    YOUR CODE — Part B: battle(player, enemy)
@@ -178,7 +184,14 @@ function attack(attacker, defender, onHit) {
      just pass it straight through into attack().
    ================================================================= */
 function battle(player, enemy) {
+    while (player.hp > 0 && enemy.hp >0){
+        attack(player, enemy, onHit);
+        if (enemy.hp > 0){
+            attack(enemy, player, onHit);
+        }
+    }
 
+    return player.hp > 0;
 }
 
 
@@ -192,7 +205,13 @@ function battle(player, enemy) {
      — call it once per enemy, right before you battle() it.
    ================================================================= */
 function runBattles(player, enemies, onNewEnemy) {
-
+    for (let i = 0; i < enemies.length; i++){
+        onNewEnemy(enemies[i]);
+        if (!battle(player, enemies[i])) {
+            return false;
+        }
+    }
+    return true;
 }
 
 
